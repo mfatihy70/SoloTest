@@ -12,8 +12,9 @@ public class ScorePanel extends JPanel{
         scoreLabel.setText("Score: " + score);
     }
 
-    private void initScoreLabel(){
+    private void initScoreLabel(int score){
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        scoreLabel.setText("Score: " + score);
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
         add(scoreLabel, gbc);
@@ -29,10 +30,11 @@ public class ScorePanel extends JPanel{
     }
 
     public ScorePanel(){
+        int score = 0;
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(500, 250));
-        initScoreLabel();
-        initScoreImage(0);
+        initScoreLabel(score);
+        initScoreImage(score);
 
     }
 }

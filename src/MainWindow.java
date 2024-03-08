@@ -9,7 +9,6 @@ public class MainWindow extends JFrame {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         setLocationRelativeTo(null);
     }
     public static void main(String[] args) {
@@ -17,6 +16,7 @@ public class MainWindow extends JFrame {
         ScorePanel scorePanel = new ScorePanel();
         mainPanel.add(scorePanel);
         mainPanel.add(gameBoard);
-        new MainWindow();
+        MainWindow mw = new MainWindow();
+        mw.setVisible(true);
     }
 }

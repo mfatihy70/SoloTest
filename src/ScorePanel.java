@@ -23,15 +23,15 @@ public class ScorePanel extends JPanel {
     };
 
     private final JLabel[] imageTranslations = {
-            new JLabel("\"Hirnlos\""),
+            new JLabel("\"Brainless\""),
             new JLabel("\"Idiot\""),
-            new JLabel("\"Dumm\""),
-            new JLabel("\"Ahnungslos\""),
+            new JLabel("\"Dumb\""),
+            new JLabel("\"Clueless\""),
             new JLabel("\"Normal\""),
-            new JLabel("\"Erfolgreich\""),
-            new JLabel("\"Schlau\""),
+            new JLabel("\"Successfull\""),
+            new JLabel("\"Clever\""),
             new JLabel("\"Intelligent\""),
-            new JLabel("\"Weise\"")
+            new JLabel("\"Wise\"")
     };
 
     private final GridBagConstraints gbc = new GridBagConstraints();
@@ -44,22 +44,27 @@ public class ScorePanel extends JPanel {
 
     private void initPanel(int stonesLeft){
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        scoreLabel.setText(stonesLeft + " stones left");
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridy = 0;
         add(scoreLabel, gbc);
         addVSpace();
         if (stonesLeft < 10 && stonesLeft > 0){
+            scoreLabel.setText("You got only " + stonesLeft + " stones left!");
             add(imageTranslations[9-stonesLeft], gbc);
             addVSpace();
             add(imageLabels[9-stonesLeft], gbc);
+        }
+        else {
+            addVSpace();
+            add(new JLabel("Wow you didn't even get any rank. Impressive..."));
+            addVSpace();
         }
 
     }
 
     public ScorePanel(int stonesLeft){
         setLayout(new GridBagLayout());
-        setPreferredSize(new Dimension(300, 30));
+        setPreferredSize(new Dimension(300, 300));
         initPanel(stonesLeft);
 
         JOptionPane.showMessageDialog(this, this, "Score", JOptionPane.PLAIN_MESSAGE);

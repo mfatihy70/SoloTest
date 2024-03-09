@@ -1,4 +1,5 @@
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import static java.lang.Math.abs;

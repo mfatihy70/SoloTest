@@ -7,6 +7,7 @@ public class Field extends JButton{
     public int x;
     public int y;
     public boolean hasStone;
+    public boolean isMovable;
 
     public Field(int x, int y){
         this.x = x;
@@ -20,7 +21,9 @@ public class Field extends JButton{
         }
         else {
             setVisible(false);
+            //setEnabled(false);
         }
+
 
         setBackground(Color.RED);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -51,8 +54,8 @@ public class Field extends JButton{
     }
 
     public void moveStone(Field toField){
+        //Case field is occupied
         if (toField.hasStone){
-            System.out.println("Field is occupied");
             return;
         }
 

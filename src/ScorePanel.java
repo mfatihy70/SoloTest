@@ -2,7 +2,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;
@@ -10,6 +9,8 @@ import java.awt.Dimension;
 public class ScorePanel extends JPanel {
 
     private final JLabel scoreLabel = new JLabel("Score: ");
+    private final GridBagConstraints gbc = new GridBagConstraints();
+
     private final JLabel[] imageLabels = {
             new JLabel(new ImageIcon("data/beyinsiz.jpg")),
             new JLabel(new ImageIcon("data/gerizekali.jpg")),
@@ -23,18 +24,17 @@ public class ScorePanel extends JPanel {
     };
 
     private final JLabel[] imageTranslations = {
-            new JLabel("\"Brainless\""),
-            new JLabel("\"Idiot\""),
-            new JLabel("\"Dumb\""),
-            new JLabel("\"Clueless\""),
-            new JLabel("\"Normal\""),
-            new JLabel("\"Successfull\""),
-            new JLabel("\"Clever\""),
-            new JLabel("\"Intelligent\""),
-            new JLabel("\"Wise\"")
+            new JLabel("You are \"Brainless\""),
+            new JLabel("You are \"Idiot\""),
+            new JLabel("You are \"Dumb\""),
+            new JLabel("You are \"Clueless\""),
+            new JLabel("You are \"Normal\""),
+            new JLabel("You are \"Successfull\""),
+            new JLabel("You are \"Clever\""),
+            new JLabel("You are \"Intelligent\""),
+            new JLabel("You are \"Wise\"")
     };
 
-    private final GridBagConstraints gbc = new GridBagConstraints();
 
     private void addVSpace(){
         gbc.gridy++;
@@ -43,7 +43,6 @@ public class ScorePanel extends JPanel {
     }
 
     private void initPanel(int stonesLeft){
-        scoreLabel.setFont(new Font("Arial", Font.BOLD, 24));
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridy = 0;
         add(scoreLabel, gbc);
@@ -55,8 +54,9 @@ public class ScorePanel extends JPanel {
             add(imageLabels[9-stonesLeft], gbc);
         }
         else {
+            scoreLabel.setText("You got " + stonesLeft + " stones left.");
             addVSpace();
-            add(new JLabel("Wow you didn't even get any rank. Impressive..."));
+            add(new JLabel("Congratulations you didn't even get any rank."), gbc);
             addVSpace();
         }
 

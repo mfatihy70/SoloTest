@@ -1,4 +1,4 @@
-#Solo Test (Peg Solitaire) in Java Swing
+# Solo Test (Peg Solitaire) in Java Swing
 Here's a game I used to play when I was a kid.
 I was just bored in the class so just wanted to write it.
 

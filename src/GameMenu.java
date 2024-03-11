@@ -7,7 +7,6 @@ public class GameMenu extends JMenuBar {
         var newGame = new JMenuItem("New Game");
         var howToPlay = new JMenuItem("How to play");
         var credits = new JMenuItem("Credits");
-        var todoWinCheckMenu = new JMenuItem("Got 3 stones?");
 
         newGame.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to start a new game?", "New Game", JOptionPane.YES_NO_OPTION);
@@ -27,15 +26,8 @@ public class GameMenu extends JMenuBar {
         M. Fatih Yildiz
         https://github.com/mfatihy70/SoloTest/"""));
 
-        todoWinCheckMenu.addActionListener(e -> JOptionPane.showMessageDialog(null, """
-                                               Sorry!\s
-        If you got 3 immovable stones and the game didn't end,
-        that's because I haven't implemented that case yet.
-        Just count the stones yourself and start a new game"""));
-
         add(newGame);
         add(howToPlay);
         add(credits);
-        add(todoWinCheckMenu);
     }
 }

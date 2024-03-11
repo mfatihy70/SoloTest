@@ -39,7 +39,7 @@ public class GameBoard extends JPanel {
         int stoneCount = 0;
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++) {
-                if (board[i][j].hasStone){
+                if (board[i][j].hasStone && board[i][j].isVisible()){
                     stoneCount++;
                 }
             }
@@ -77,77 +77,43 @@ public class GameBoard extends JPanel {
         }
     }
 
-    private boolean checkGameOver(){
+    private boolean checkGameOver() {
         boolean isOver = true;
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                Field field = board[i][j];
-                if ((field.hasStone) &&
-                    ((i > 0 && board[i-1][j].hasStone) ||
-                    (i < 8 && board[i+1][j].hasStone) ||
-                    (j > 0 && board[i][j-1].hasStone) ||
-                    (j < 8 && board[i][j+1].hasStone)))  {
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (((x == 3 || x == 4 || x == 5) || (y == 3 || y == 4 || y == 5)) &&
+                    (isMovable(board[x][y]))) {
                     isOver = false;
                     break;
                 }
             }
-
-            //TODO: Check if 3 stones are stuck
-            //are3StonesStuck();
-
             if (!isOver) {
                 break;
             }
-
         }
         return isOver;
+
     }
 
-    private boolean are3StonesStuck() {
-
-        if (board[0][3].hasStone && board[0][4].hasStone && board[0][5].hasStone &&
-            !board[1][3].hasStone && !board[1][4].hasStone && !board[1][5].hasStone) {
+    private boolean isMovable(Field field){
+        if (!field.hasStone){
+            return false;
+        }
+        // Check up
+        if (field.x > 1 && board[field.x-1][field.y].hasStone && !board[field.x-2][field.y].hasStone) {
             return true;
         }
-
-        if (board[1][3].hasStone && board[1][4].hasStone && board[1][5].hasStone &&
-            !board[0][3].hasStone && !board[0][4].hasStone && !board[0][5].hasStone &&
-            !board[2][3].hasStone && !board[2][4].hasStone && !board[2][5].hasStone) {
+        // Check down
+        if (field.x < 7 && board[field.x+1][field.y].hasStone && !board[field.x+2][field.y].hasStone) {
             return true;
         }
-
-        if (board[2][3].hasStone && board[2][4].hasStone && board[2][5].hasStone &&
-            !board[1][3].hasStone && !board[1][4].hasStone && !board[1][5].hasStone &&
-            !board[3][3].hasStone && !board[3][4].hasStone && !board[3][5].hasStone) {
+        // Check left
+        if (field.y > 1 && board[field.x][field.y-1].hasStone && !board[field.x][field.y-2].hasStone) {
             return true;
         }
-
-        for (int i = 0; i < 3; i++) {
-            if (board[i][3].hasStone && board[i][4].hasStone && board[i][5].hasStone &&
-                !board[(i+1)%3][3].hasStone && !board[(i+1)%3][4].hasStone && !board[(i+1)%3][5].hasStone) {
-                return true;
-            }
-        }
-
-        for (int j = 0; j < 3; j++) {
-            if (board[3][j].hasStone && board[4][j].hasStone && board[5][j].hasStone &&
-                    !board[3][(j+1)%3].hasStone && !board[4][(j+1)%3].hasStone && !board[5][(j+1)%3].hasStone) {
-                return true;
-            }
-        }
-
-        for (int i = 0; i < 3; i++) {
-            if (board[6+i][3].hasStone && board[6+i][4].hasStone && board[6+i][5].hasStone &&
-                    !board[(6+i+1)%9][3].hasStone && !board[(6+i+1)%9][4].hasStone && !board[(6+i+1)%9][5].hasStone) {
-                return true;
-            }
-        }
-
-        for (int j = 0; j < 3; j++) {
-            if (board[3][6+j].hasStone && board[4][6+j].hasStone && board[5][6+j].hasStone &&
-                    !board[3][(6+j+1)%9].hasStone && !board[4][(6+j+1)%9].hasStone && !board[5][(6+j+1)%9].hasStone) {
-                return true;
-            }
+        // Check right
+        if (field.y < 7 && board[field.x][field.y+1].hasStone && !board[field.x][field.y+2].hasStone) {
+            return true;
         }
 
         return false;

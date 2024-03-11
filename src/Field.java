@@ -21,7 +21,7 @@ public class Field extends JButton{
         }
         else {
             setVisible(false);
-            //setEnabled(false);
+            putStone();
         }
 
 

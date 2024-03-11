@@ -1,7 +1,6 @@
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.GridLayout;
-import java.awt.Dimension;
 import static java.lang.Math.abs;
 
 public class GameBoard extends JPanel {
@@ -50,19 +49,19 @@ public class GameBoard extends JPanel {
     private void clickField(Field field){
         //Check if the first field is selected
         if (firstField != null && !field.hasStone){
-
             Field verticalMiddle = board[(field.x + firstField.x) / 2][field.y];
             Field horizontalMiddle = board[field.x][(field.y + firstField.y) / 2];
             // Check if the move is horizontally valid
-            if ((abs(field.x - firstField.x) == 2) && (abs(field.y - firstField.y) == 0) &&
-                    (verticalMiddle.hasStone)){
+            if ((abs(field.x - firstField.x) == 2) &&
+                (abs(field.y - firstField.y) == 0) &&
+                (verticalMiddle.hasStone)){
                 firstField.moveStone(field);
                 verticalMiddle.removeStone();
             }
             // Check if the move is vertically valid
-            else if ((abs(field.x - firstField.x) == 0) && (abs(field.y - firstField.y) == 2) &&
-                    (horizontalMiddle.hasStone))
-            {
+            else if ((abs(field.x - firstField.x) == 0) &&
+                    (abs(field.y - firstField.y) == 2) &&
+                    (horizontalMiddle.hasStone)){
                 firstField.moveStone(field);
                 horizontalMiddle.removeStone();
             }
@@ -120,9 +119,8 @@ public class GameBoard extends JPanel {
     }
 
     public GameBoard() {
-        setPreferredSize(new Dimension(500, 500));
         setLayout(new GridLayout(9,9));
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        setBorder(BorderFactory.createEmptyBorder(7,7,7,7));
         initBoard();
     }
 }

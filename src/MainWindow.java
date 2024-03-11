@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame {
     public MainWindow() {
         setTitle("Solo Test");
-        setSize(500, 500);
+        setSize(500, 520);
         setContentPane(new GameBoard());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

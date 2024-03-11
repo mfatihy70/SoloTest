@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SoloTest:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SoloTest_jar</output-path>
+    <root id="archive" name="SoloTest.jar">
+      <element id="module-output" name="SoloTest" />
+    </root>
+  </artifact>
+</component>

@@ -2,6 +2,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import java.awt.Color;
+import java.util.Objects;
 
 public class Field extends JButton{
     public int x;
@@ -32,7 +33,7 @@ public class Field extends JButton{
             return;
         }
         hasStone = true;
-        setIcon(new ImageIcon("data/stone.png"));
+        setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("stone.png"))));
     }
 
     public void removeStone(){

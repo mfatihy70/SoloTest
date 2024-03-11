@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.GridLayout;
+import static java.lang.Math.abs;
 
 public class Board extends JPanel {
 
@@ -46,16 +47,21 @@ public class Board extends JPanel {
     }
 
     private void clickField(Field field){
-        //Function handling click events by checking if the move is valid
-        if (firstField != null && !field.hasStone && isMovable(firstField)) {
-            Field middleField = board[(firstField.x + field.x) / 2][(firstField.y + field.y) / 2];
-            if (middleField.hasStone) {
+        // Check if the first field is selected and if the clicked field is empty
+        if (firstField != null && !field.hasStone){
+            // Calculate the middle field coordinates
+            int middleX = (field.x + firstField.x) / 2;
+            int middleY = (field.y + firstField.y) / 2;
+            Field middleField = board[middleX][middleY];
+
+            // Check if the move is valid (either horizontally or vertically)
+            if (middleField.hasStone && abs(field.x - firstField.x) <= 2 && abs(field.y - firstField.y) <= 2){
                 firstField.moveStone(field);
                 middleField.removeStone();
-            } else {
-                firstField = field;
             }
-        } else {
+            firstField = null;
+        }
+        else {
             firstField = field;
         }
 

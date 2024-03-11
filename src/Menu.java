@@ -1,9 +1,17 @@
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JComponent;
+import javax.swing.Box;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
-public class GameMenu extends JMenuBar {
-    public GameMenu(){
+public class Menu extends JMenuBar {
+
+    private void addComponent(JComponent component, int gridx, GridBagConstraints gbc) {
+        gbc.gridx = gridx; gbc.gridy = 0; add(component, gbc); }
+
+    public Menu(){
         var newGame = new JMenuItem("New Game");
         var howToPlay = new JMenuItem("How to play");
         var credits = new JMenuItem("Credits");
@@ -11,7 +19,7 @@ public class GameMenu extends JMenuBar {
         newGame.addActionListener(e -> {
             int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to start a new game?", "New Game", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION){
-                GameBoard.resetBoard();
+                Board.resetBoard();
             }});
 
         howToPlay.addActionListener(e -> JOptionPane.showMessageDialog(null, """                    
@@ -24,8 +32,13 @@ public class GameMenu extends JMenuBar {
         M. Fatih Yildiz
         https://github.com/mfatihy70/SoloTest/""", "Credits", JOptionPane.INFORMATION_MESSAGE));
 
-        add(newGame);
-        add(howToPlay);
-        add(credits);
+        setLayout(new GridBagLayout());
+        var gbc = new GridBagConstraints();
+        var leftSpacer = (JComponent) Box.createHorizontalStrut(15);
+        addComponent(leftSpacer, 0, gbc);
+        addComponent(newGame, 1, gbc);
+        addComponent(howToPlay, 2, gbc);
+        addComponent(credits, 3, gbc);
     }
+
 }

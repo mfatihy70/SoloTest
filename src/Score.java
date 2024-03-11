@@ -7,7 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Dimension;
 import java.util.Objects;
 
-public class ScorePanel extends JPanel {
+public class Score extends JPanel {
 
     private final JLabel scoreLabel = new JLabel("Score: ");
     private final GridBagConstraints gbc = new GridBagConstraints();
@@ -62,7 +62,7 @@ public class ScorePanel extends JPanel {
         }
     }
 
-    public ScorePanel(int stonesLeft){
+    public Score(int stonesLeft){
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(300, 300));
         initPanel(stonesLeft);

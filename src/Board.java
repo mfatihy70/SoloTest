@@ -2,7 +2,7 @@ import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.GridLayout;
 
-public class GameBoard extends JPanel {
+public class Board extends JPanel {
 
     private final static Field[][] board = new Field[9][9];
     private Field firstField = null;
@@ -60,7 +60,7 @@ public class GameBoard extends JPanel {
         }
 
         if (checkGameOver()){
-            new ScorePanel(getStoneCount());
+            new Score(getStoneCount());
         }
     }
 
@@ -102,7 +102,7 @@ public class GameBoard extends JPanel {
         return false;
     }
 
-    public GameBoard() {
+    public Board() {
         setLayout(new GridLayout(9,9));
         setBorder(BorderFactory.createEmptyBorder(7,7,7,7));
         initBoard();
